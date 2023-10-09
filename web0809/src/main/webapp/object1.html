@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Object 01</title>
+		<script>
+			// 로또번호 만들기
+			function make_lotto() {
+				var lotto = []
+				while(lotto.length < 6) {
+					let num = Math.ceil(Math.random() * 45) // 1 ~ 45
+					// 중복검사
+					if(lotto.indexOf(num) == -1)
+						lotto.push(num)
+				}
+				
+				lotto.sort((a, b) => a-b)
+				alert(lotto)
+			}
+			
+			make_lotto()
+			location = "http://naver.com"
+		</script>
+	</head>
+	<body>
+		<h1>객체 연습</h1>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>DOM 01</title>
+	</head>
+	<body>
+		<button>증가</button>
+		<button>감소</button>
+		<div id="result"></div>
+		
+		<script>
+			let count = 0
+			
+			function increase() {
+				count++
+				document.querySelector("#result").innerHTML = count
+			}
+			
+			function decrease() {
+				count--
+				document.querySelector("#result").innerHTML = count
+			}
+			
+			let btns = document.querySelectorAll("button")
+			for(let i=0; i<btns.length; i++) {
+				if(btns[i].innerHTML == '증가')
+					btns[i].onclick = increase
+				else btns[i].onclick = decrease
+			}
+		</script>
+	</body>
+</html>

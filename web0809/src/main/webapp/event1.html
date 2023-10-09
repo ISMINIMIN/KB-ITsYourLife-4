@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Event</title>
+		<style>
+			#result {
+				width: 500px;
+				height: 300px;
+				border: 1px solid black;
+				font-weight: bolder;
+				font-size: 150pt;
+				text-align: center;
+			}
+		</style>
+		<script>
+			let count = 0
+			
+			function change_bg(color) {
+				document.querySelector("#result").style.background = color
+				document.querySelector("#result").innerHTML = ++count
+			}
+			
+			function change_purple() {
+				change_bg('purple')
+			}
+		</script>
+	</head>
+	<body>
+		<a href="#" onclick="change_bg('green')">Green</a> <br>
+		<a href="#" onclick="change_bg('orange')">Orange</a> <br>
+		<a href="#" id="purple_a">Purple</a> <br>
+		
+		<div id="result"></div>
+		
+		<script>
+			document.querySelector("#purple_a").onclick = change_purple
+		</script>
+	</body>
+</html>

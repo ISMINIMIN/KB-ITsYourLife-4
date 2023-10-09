@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>DOM 02</title>
+	</head>
+	<body>
+		<button class="inc">증가</button>
+		<button class="dec">감소</button>
+		<div id="result"></div>
+		
+		<script>
+			let count = 0
+			
+			function increase() {
+				count++
+				document.querySelector("#result").innerHTML = "<h1>" + count + "</h1>"
+				// document.querySelector("#result").innerText = "<h1>" + count + "</h1>" // 태그 적용 안됨
+			}
+			
+			function decrease() {
+				count--
+				document.querySelector("#result").innerHTML = "<h1>" + count + "</h1>"
+			}
+			
+			let inc_btn = document.querySelector("button.inc")
+			inc_btn.onclick = increase
+			
+			let dec_btn = document.querySelector("button.dec")
+			dec_btn.onclick = decrease
+		</script>
+	</body>
+</html>

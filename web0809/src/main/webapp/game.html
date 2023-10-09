@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>숫자맞추기게임</title>
+		<style>
+			#field {
+				width: 400px;
+				height: 200px;
+				border: 1px solid black;
+				margin: 0 auto;
+				text-align: center;
+			}
+			
+			#result {
+				margin-top: 10px;
+			}
+		</style>
+		<script>
+			function show_message(msg) {
+				document.querySelector("#result").innerHTML = msg
+			}
+			
+			let com_num = Math.ceil(Math.random() * 100)
+			
+			window.onload = function() {
+				document.querySelector("#check_btn").onclick = function() {
+					let num = document.querySelector("#num").value
+					if(num == '') {
+						show_message("숫자를 입력하세요 !")
+						return
+					}
+					num = Number(num)
+					
+					let msg = ""
+					if(num == com_num) {
+						msg = "정답입니다 :)"
+					} else if(num < com_num) {
+						msg = "숫자를 올려주세요 !"
+					} else {
+						msg = "숫자를 내려주세요 !"
+					}
+					
+					show_message(msg)
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="field">
+			<h1>숫자맞추기게임</h1>
+			<p>컴퓨터가 정한 1~100 사이 난수를 맞춰 보세요 !</p>
+			<hr>
+			숫자 : <input id="num" type="number">
+			<button id="check_btn">정답확인</button>
+			<div id="result"></div>
+		</div>
+	</body>
+</html>

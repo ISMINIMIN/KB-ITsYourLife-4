@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script>
+			function f1() {
+				alert(100)
+			}
+			
+			// alert(f1)
+			// var f2 = f1
+			// f2()
+			
+			function plus(n1, n2) {
+				return n1 + n2
+			}
+			
+			function plus1(n1 = 0, n2 = 0) {
+				return n1 + n2
+			}
+			
+			// alert(plus()) // NaN
+			// alert(plus1()) // 0
+			// alert(plus(1, 2))
+			
+			var func = function(n1 = 0, n2 = 0) {
+				return n1 + n2
+			}
+			
+			// alert(func(3, 4))
+			
+			var result = function(n1 = 0, n2 = 0) {
+				return n1 + n2
+			}(5, 7)
+			
+			// alert(result)
+			
+			var result2 = (n1 = 0, n2 = 0) => {
+				return n1 + n2;
+			} // 익명함수의 약칭(화살표 함수)
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

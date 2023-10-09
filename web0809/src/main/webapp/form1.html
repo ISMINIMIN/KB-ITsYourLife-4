@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Form 01</title>
+		 <script>
+			window.onload = function() {
+				let login_form = document.querySelector("#login_form")
+				login_form.onsubmit = function() {
+					if(document.querySelector("#mid").value == '')
+						return false;
+					if(document.querySelector("#mpw").value == '')
+						return false;
+					return true;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<form id="login_form" onsubmit="return check_form()"> <!-- false를 리턴하면 전송 안됨(false 이외의 값으로 리턴하면 전송) -->
+			아이디 : <input type="text" name="id" id="mid"><br>
+			비밀번호 : <input type="password" name="pw" id="mpw"><br>
+			<input type="submit" value="로그인">
+		</form>
+		
+		<!-- <script>
+			function check_form() {
+				let login_form = document.querySelector("#login_form")
+				alert(login_form)
+			}
+		</script> -->
+	</body>
+</html>
