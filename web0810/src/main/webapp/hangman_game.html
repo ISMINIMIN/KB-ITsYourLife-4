@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>HANGMAN GAME</title>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<style>
+		h3 {
+			font-family: sans-serif;
+		}
+		
+		p {
+			font-size: 13pt;
+		}
+		
+		#accordion {
+			width: 800px;
+			margin: 0 auto;
+		}
+		
+		#rule {
+			width: 725px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		
+		#rule-content {
+			padding-top: 30px
+		}
+		
+		#field {
+			width: 725px;
+			height: 400px;
+			margin: 0 auto;
+			padding-top: 50px;
+			text-align: center;
+		}
+		
+		#answer {
+			font-size: 35pt;
+			font-weight: bold;
+			color: royalblue;
+		}
+		
+		#alphabet {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+		
+		#alphabet > button {
+			width: 40px;
+			height: 40px;
+			background: white;
+			border: none;
+			font-size: 15pt;
+			font-weight: bold;
+		}
+		
+		#check {
+			margin-bottom: 30px;
+			font-size: 20pt;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<script>
+		let words = ["ALLIGATOR", "RABBIT", "CAMEL", "ELEPHANT", "MONKEY", "MOUSE", "DOLPIN", "CHIMPANZEE", "GIRAFFE", "HIPPO", "TURTLE"]
+		let random = Math.floor(Math.random() * words.length)
+		let word = words[random].split("")
+		let count = 7
+		let correct = 0
+		
+		function init_answer() {
+			let answer = $("#answer")
+			let html = ""
+			
+			answer.empty()
+			
+			for(let i=0; i<word.length; i++) {
+				html += "<span id='"+i+"'>_</span>"
+				html += " "
+			}
+			
+			answer.html(html)
+		}
+		
+		function init_alphabet() {
+			let alphabet = $("#alphabet")
+			let html = ""
+			
+			alphabet.empty()
+			
+			for(let i=65; i<91; i++) {
+				let alp = String.fromCharCode(i)
+				html += "<button data-alp='"+alp+"'>" + alp + "</button>"
+				if(i == 77) {
+					html += "<br>"
+				}
+			}
+			
+			alphabet.html(html)
+		}
+		
+		function init_event() {
+			$("#alphabet > button").click(function() {
+				let currAlp = $(this).data("alp")
+				let missCnt = 0
+					
+				for(let i=0; i<word.length; i++) {
+					if(currAlp == word[i]) {
+						correct++
+						$("#" + i).html(currAlp)
+					} else {
+						missCnt++
+					}
+				}
+					
+				$(this).css("color", "orange")
+				$(this).attr("disabled", true)
+					
+				if(missCnt == word.length) {
+					count--
+					let life = "🙂".repeat(count) + "⚪".repeat(7-count)
+					$("#check").html(life)
+				}
+					
+				if(count == 0) {
+					$("#alphabet > button").attr("disabled", true)
+					setTimeout("alert_message('정답은 ' + word.join('') +'입니다. 당신은 바보입니까?')", 500)
+				}
+					
+				if(correct == word.length) {
+					$("#alphabet > button").attr("disabled", true)
+					setTimeout("alert_message('추카추카~ 똑똑한 사람입니다 !')", 500)
+				}
+			})
+		}
+		
+		function restart() {
+			random = Math.floor(Math.random() * words.length)
+			word = words[random].split("")
+			count = 7
+			correct = 0
+			
+			$("#check").html("🙂🙂🙂🙂🙂🙂🙂")
+			init_answer()
+			init_alphabet()
+			init_event()
+		}
+		
+		function alert_message(message) {
+			alert(message)
+			restart()
+		}
+		
+		$(function() {
+			$("#accordion").accordion()
+			$("#check").html("🙂🙂🙂🙂🙂🙂🙂")
+			init_answer()
+			init_alphabet()
+			init_event()
+		})
+	</script>
+</head>
+<body>
+	<div id="accordion">
+		<h3>GAME HERE</h3>
+		<div id="field">
+			<h1 style="margin-bottom: 10px;">HANGMAN GAME</h1>
+			<h2 style="margin-top: 0;">Category - Animals</h2>
+			<div id="answer"></div>
+			<div id="alphabet"></div>
+			<div id="check"></div>
+		</div>
+		<h3>SHOW RULE</h3>
+		<div id="rule">
+			<div id="rule-content">
+				<h1>게임규칙</h1>
+				<p>단어의 주제는 동물입니다.</p>
+				<p>단어에 사용되었을 것 같은 알파벳을 눌러주세요.</p>
+				<p>단어에 알파벳이 포함되어 있다면 알파벳이 해당 위치에 채워집니다.</p>
+				<p>단어에 알파벳이 포함되어 있지 않은 경우에는 목숨이 1개씩 사라집니다.</p>
+				<p>목숨(🙂)은 총 7개입니다.</p>
+				<p>'🙂'가 모두 사라지기 전에 단어를 맞춰주세요.</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

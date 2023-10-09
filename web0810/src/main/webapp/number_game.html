@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>숫자맞추기게임</title>
+		<style>
+			#field {
+				width: 400px;
+				border: 1px solid black;
+				margin: 0 auto;
+				text-align: center;
+			}
+			
+			#result {
+				margin-top: 10px;
+				margin-bottom: 10px;
+			}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+		<script>
+			let com_num = Math.ceil(Math.random() * 100)
+			let over_write = false
+			
+			$(function() {
+				$("#check_btn").click(function() {
+					let user_num = $("#num").val()
+					$("#num").val("")
+					let msg = user_num + " : "
+					
+					if(user_num == com_num) {
+						msg += "정답입니다 :)"
+						$("#result").html(msg)
+						setTimeout("$('#result').html('새로운 게임이 시작되었습니다 !')", 2000)
+						over_write = true
+						com_num = Math.ceil(Math.random() * 100)
+						return
+					} else if(user_num > com_num) {
+						msg += "숫자를 내려주세요 !"
+					} else {
+						msg += "숫자를 올려주세요 !"
+					}
+					
+					if(over_write) {
+						$("#result").html(msg)
+						over_write = false
+					} else {
+						let body = $("#result").html()
+						$("#result").html(msg + "<br>" + body)
+					}
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div id="field">
+			<h1>숫자맞추기게임</h1>
+			<p>컴퓨터가 정한 1~100 사이 난수를 맞춰 보세요 !</p>
+			<hr>
+			숫자 : <input id="num" type="number">
+			<button id="check_btn">정답확인</button>
+			<div id="result"></div>
+		</div>
+	</body>
+</html>

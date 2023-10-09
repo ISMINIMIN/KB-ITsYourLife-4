@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>지뢰찾기게임</title>
+	<style>
+		fieldset {
+			width: 500px;
+		}
+		
+		#map {
+			width: 530px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		
+		#field > button {
+			width: 50px;
+			height: 50px;
+			background: white;
+			border: 1px solid dimgrey;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script>
+		let mine_row = 0
+		let mine_col = 0
+		
+		function init_mine() {
+			mine_row = Math.floor(Math.random() * 10 + 1)
+			mine_col = Math.floor(Math.random() * 10 + 1)
+		}
+		
+		function init_button() {
+			let field = $("#field")
+			let html = ""
+			
+			field.empty()
+					
+			for(let row=1; row<=10; row++) {
+				for(let col=1; col<=10; col++) {
+					html += "<button data-row='"+row+"' data-col='"+col+"'> ? </button>"
+				}
+				html += "<br>"
+			}
+			
+			field.html(html)
+		}
+		
+		function init_event() {
+			$("#field > button").click(function() {
+				let row = $(this).data("row")
+				let col = $(this).data("col")
+				$("#result").html("row : " + row + ", col : " + col)
+				
+				let distance = Math.round(Math.sqrt(Math.pow(row - mine_row, 2) + Math.pow(col - mine_col, 2)))
+				if(distance == 0) {
+					$(this).html("🌞")
+					$(this).css("border", "3px solid white")
+					
+					alert("찾음!")
+					init_mine()
+					init_button()
+					init_event()
+					$("#result").html("")
+				} else {
+					$(this).html(distance)
+					$(this).css("border", "3px solid white")
+					$(this).css("background", "orange")
+					$(this).css("color", "white")
+				}
+			})
+		}
+		
+		$(function() {
+			init_mine()
+			init_button()
+			init_event()
+		})
+	</script>
+</head>
+<body>
+	<div id="map">
+		<h1>🌞 지뢰찾기 🌞</h1>
+		<div id="result"></div>
+		<fieldset>
+			<legend>지뢰밭</legend>
+			<div id="field"></div>
+		</fieldset>
+	</div>
+</body>
+</html>
