@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>AJAX 03</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#get_data").click(function() {
+				let options = {
+					url : "data.xml",
+					dataType : "xml",
+					success : function(data) {
+						// let t = $(data).find("score").text()
+						// alert(t)
+						
+						let sc = $(data).find("score")
+						sc.each(function(idx, val) { // val은 태그 객체(<score></score>)
+							let v = $(val).text() // jquery
+							// let v = val.innerHTML // javascript
+							$("#result").append(v + " ")
+						})
+					}
+				}
+				$.ajax(options)
+			})
+		})
+	</script>
+</head>
+<body>
+	<button id="get_data">가져오기</button>
+	<div id="result"></div>
+</body>
+</html>
