@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Form 01</title>
+	</head>
+	
+	<body>
+	<form action="form_check.jsp" method="post"> <!-- action을 생략하는 경우 같은 파일명이 기본 설정(자기자신이 받음) -->
+		<input type="hidden" name="no" value="30"> <!-- hidden : 게시물 수정할 때 주로 사용 -->
+		이름 : <input type="text", name="nm" autofocus><br> <!-- name : 입력받은 글자를 저장하는 변수(파라미터), name을 지정하지 않으면 값이 전송되지 않음 -->
+		소속 : <input type="text", name="nm" value="KB" readonly><br>
+		비밀번호 : <input type="password", name="pwd" required><br>
+		주소 : <input type="search" name="adr" placeholder="주소를 입력하세요"><br>
+		성별 :
+			<input type="radio" name="gen" value="male"> 남
+			<input type="radio" name="gen" value="female"> 여
+			<br>
+		좋아하는 운동 :
+			<input type="checkbox" name="fav_spt" value="pingpong"> 탁구
+			<input type="checkbox" name="fav_spt" value="golf"> 골프
+			<br>
+		회비 : <input type="number"><br>
+		부서선택 : 
+		<select name="dept">
+			<option value="000">부서를 선택하세요</option>
+			<option value="100">기획부</option>
+			<option value="200">영업부</option>
+			<option value="300">개발부</option>
+		</select><br>
+		게시물 내용 : <br>
+		<textarea rows="5" cols="60" name="content"></textarea><br> <!-- 개행금지 -->
+		<input type="submit" value="보내기">
+		<input type="reset" value="초기화">
+	</form>
+	
+	<button>버튼1</button>
+	</body>
+
+</html>
