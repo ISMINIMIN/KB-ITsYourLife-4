@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style>
+			* { margin : 0; }
+			li { color: red; list-style-type: none; padding: 0; }
+			h1 { background: yellow; text-shadow: 3px 3px 5px gray;} /* 가중치 1 */
+			ul > li { color: blue; }
+			.blue_border { border: 3px dotted blue; }
+			.red_border { border: 3px dotted red; }
+			.pink_bg { background: pink; }
+			#cyan_bg { background: cyan; } /* 가중치 100 */
+			h1#cyan_bg { background: cyan; } /* 가중치 : 101, h1 && cyan_bg */
+			#cyan_bg { background: teal; } /* 가중치 100, 가중치(우선순위)가 같은 경우 나중에 기술된 스타일이 적용됨 */
+			
+			li:hover { border: 1px solid red; }
+			form > span { display: none; }
+			input:focus + span {display: inline;}
+			a { text-decoration: none; color: dimgray; }
+			a:hover { text-decoration: underline; color: black; }
+			ol { width: 400px; }
+		</style>
+	</head>
+	
+	<body>
+		<h1 id="cyan_bg">CSS 연습</h1>
+		<h1>CSS 연습</h1>
+		<div>
+			<a href="http://naver.com">네이버</a><br>
+			<a href="http://daum.net">다음</a><br>
+		</div>
+		<ul>
+			<li class="blue_border pink_bg">HTML</li>
+			<li>CSS</li>
+			<li>Javscript</li>
+			<li>jQuery</li>
+			<li>Bootstrap</li>
+		</ul>
+		<ol>
+			<li class="red_border">HTML</li>
+			<li>CSS</li>
+			<li>Javscript</li>
+			<li>jQuery</li>
+			<li>Bootstrap</li>
+		</ol>
+		<form>
+			이름 : <input name="nm"><span>본인의 이름을 입력하세요</span><br>
+			비밀번호 : <input type="password" name="pw"><span>본인의 비밀번호를 입력하세요</span><br>
+		</form>
+	</body>
+
+</html>
