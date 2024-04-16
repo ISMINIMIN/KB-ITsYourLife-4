@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="config.BoardMapper">
+
+  <select id="selectAll" resultType="mybatis.dto.BoardDto">
+    select * from Board ORDER BY no
+  </select>
+  
+  <insert id="insert" parameterType="mybatis.dto.BoardDto"><!-- 파라미터타입은 생략해도 되지만 유지보수를 위해서 작성한다. -->
+  	insert into board(no, title, writer, content, regdate)
+  	values(board_seq.nextval, #{title}, #{writer}, #{content}, sysdate)
+  </insert>
+  
+  <select id="selectOne" resultType="mybatis.dto.BoardDto">
+    select * from Board where no = #{no}
+  </select>
+  
+</mapper>
